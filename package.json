@@ -1,0 +1,31 @@
+{
+  "name": "server-staycation",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "test": "mocha --exit"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "chai": "^4.3.8",
+    "chai-http": "^4.4.0",
+    "ckeditor": "^4.12.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "fs-extra": "^11.1.1",
+    "http-errors": "~1.6.3",
+    "method-override": "^3.0.0",
+    "mocha": "^10.2.0",
+    "mongoose": "^6.10.0",
+    "mongoose-seed": "^0.6.0",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.5-lts.1",
+    "startbootstrap-sb-admin-2": "^4.1.4"
+  }
+}
