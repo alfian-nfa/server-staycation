@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 // Connect to MongoDB via Mongoose
 seeder.connect(
   //   "mongodb+srv://codeathome:bwamern@cluster0-40j6e.mongodb.net/db_staycation?retryWrites=true&w=majority",
-  "mongodb://127.0.0.1:27017/db_staycation_dev",
+  "mongodb+srv://alfian_azis:Jun2023@cluster0.xsdtr7f.mongodb.net/db_staycation?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

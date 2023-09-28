@@ -1,5 +1,6 @@
 var createError = require("http-errors");
 var express = require("express");
+const serverless = require("serverless-http");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
@@ -8,7 +9,7 @@ const session = require("express-session");
 const flash = require("connect-flash");
 // import mongoose
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/db_staycation_dev");
+mongoose.connect("mongodb+srv://alfian_azis:Jun2023@cluster0.xsdtr7f.mongodb.net/db_staycation?retryWrites=true&w=majority");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -61,4 +62,6 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-module.exports = app;
+// module.exports = app;
+app.use("/.netlify/functions/api", router);
+module.exports.handler = serverless(app);
