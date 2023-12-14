@@ -33,6 +33,7 @@ module.exports = {
   actionSignin: async (req, res) => {
     try {
       const { username, password } = req.body;
+
       const user = await Users.findOne({ username: username });
 
       if (!user) {
@@ -360,6 +361,7 @@ module.exports = {
         item,
         alert,
         action: "show image",
+        user: req.session.user,
       });
     } catch (error) {
       req.flash("alertMessage", `${error.message}`);
@@ -381,6 +383,7 @@ module.exports = {
         category,
         alert,
         action: "",
+        user: req.session.user,
       });
     } catch (error) {
       req.flash("alertMessage", `${error.message}`);

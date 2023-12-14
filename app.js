@@ -1,15 +1,20 @@
 var createError = require("http-errors");
 var express = require("express");
-const serverless = require("serverless-http");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const flash = require("connect-flash");
+const cors = require("cors");
 // import mongoose
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://alfian_azis:Jun2023@cluster0.xsdtr7f.mongodb.net/db_staycation?retryWrites=true&w=majority");
+mongoose.connect("mongodb://127.0.0.1:27017/db_staycation_dev", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+});
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -31,6 +36,7 @@ app.use(
     cookie: { maxAge: 60000 },
   })
 );
+app.use(cors());
 app.use(flash());
 app.use(logger("dev"));
 app.use(express.json());
@@ -38,7 +44,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/sb-admin-2", express.static(path.join(__dirname, "node_modules/startbootstrap-sb-admin-2")));
-app.use("/ckeditor4", express.static(path.join(__dirname, "node_modules/ckeditor")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
@@ -62,6 +67,4 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-// module.exports = app;
-app.use("/.netlify/functions/api", router);
-module.exports.handler = serverless(app);
+module.exports = app;
